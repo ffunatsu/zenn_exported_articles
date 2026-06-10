@@ -14,7 +14,7 @@ created_at: "2025-01-18"
 ```
 
 実験結果のGitリポジトリ。各スクラップに対応してlib.zig 〜 lib7.zig がある。
-https://github.com/funatsufumiya/zig-polymorphism-study
+https://github.com/ffunatsu/zig-polymorphism-study
 
 ---
 
@@ -250,7 +250,7 @@ test "animal voice and name with interface" {
 ```
 
 init内の、`const self = @as(*T, @ptrCast(@alignCast(ptr)));` を関数を使って共通化した例。
-これで若干init書くのは楽になるかな？（[GitHubのREADME](https://github.com/funatsufumiya/zig-polymorphism-study)には、この**フルバージョン**を記載。）
+これで若干init書くのは楽になるかな？（[GitHubのREADME](https://github.com/ffunatsu/zig-polymorphism-study)には、この**フルバージョン**を記載。）
 
 ```zig
 // （Animal以外の定義は先に同じ。）

@@ -7,7 +7,7 @@
     {
       "author": "funatsufumiya",
       "created_at": "2025-01-18",
-      "body_markdown": "実験結果のGitリポジトリ。各スクラップに対応してlib.zig 〜 lib7.zig がある。\nhttps://github.com/funatsufumiya/zig-polymorphism-study",
+      "body_markdown": "実験結果のGitリポジトリ。各スクラップに対応してlib.zig 〜 lib7.zig がある。\nhttps://github.com/ffunatsu/zig-polymorphism-study",
       "body_updated_at": "2025-01-18"
     },
     {
@@ -30,7 +30,7 @@
     {
       "author": "funatsufumiya",
       "created_at": "2025-01-18",
-      "body_markdown": "init内の、`const self = @as(*T, @ptrCast(@alignCast(ptr)));` を関数を使って共通化した例。\nこれで若干init書くのは楽になるかな？（[GitHubのREADME](https://github.com/funatsufumiya/zig-polymorphism-study)には、この**フルバージョン**を記載。）\n\n```zig\n// （Animal以外の定義は先に同じ。）\n\nconst Animal = struct {\n    vtable: *const VTable,\n    instance: *anyopaque,\n\n    const VTable = struct {\n        voiceFn: *const fn (*anyopaque) []const u8,\n        nameFn: *const fn (*anyopaque) []const u8,\n    };\n\n    fn castTo(comptime T: type, ptr: *anyopaque) *T {\n        return @as(*T, @ptrCast(@alignCast(ptr)));\n    }\n\n    pub fn voice(self: *const Animal) []const u8 {\n        return self.vtable.voiceFn(self.instance);\n    }\n\n    pub fn name(self: *const Animal) []const u8 {\n        return self.vtable.nameFn(self.instance);\n    }\n\n    pub fn init(comptime T: type, instance: *T) Animal {\n        const vtable = comptime VTable{\n            .voiceFn = struct {\n                fn func(ptr: *anyopaque) []const u8 {\n                    const self = Animal.castTo(T, ptr);\n                    return self.voice();\n                }\n            }.func,\n            .nameFn = struct {\n                fn func(ptr: *anyopaque) []const u8 {\n                    const self = Animal.castTo(T, ptr);\n                    return self.name();\n                }\n            }.func,\n        };\n        return .{\n            .vtable = &vtable,\n            .instance = instance,\n        };\n    }\n};\n```",
+      "body_markdown": "init内の、`const self = @as(*T, @ptrCast(@alignCast(ptr)));` を関数を使って共通化した例。\nこれで若干init書くのは楽になるかな？（[GitHubのREADME](https://github.com/ffunatsu/zig-polymorphism-study)には、この**フルバージョン**を記載。）\n\n```zig\n// （Animal以外の定義は先に同じ。）\n\nconst Animal = struct {\n    vtable: *const VTable,\n    instance: *anyopaque,\n\n    const VTable = struct {\n        voiceFn: *const fn (*anyopaque) []const u8,\n        nameFn: *const fn (*anyopaque) []const u8,\n    };\n\n    fn castTo(comptime T: type, ptr: *anyopaque) *T {\n        return @as(*T, @ptrCast(@alignCast(ptr)));\n    }\n\n    pub fn voice(self: *const Animal) []const u8 {\n        return self.vtable.voiceFn(self.instance);\n    }\n\n    pub fn name(self: *const Animal) []const u8 {\n        return self.vtable.nameFn(self.instance);\n    }\n\n    pub fn init(comptime T: type, instance: *T) Animal {\n        const vtable = comptime VTable{\n            .voiceFn = struct {\n                fn func(ptr: *anyopaque) []const u8 {\n                    const self = Animal.castTo(T, ptr);\n                    return self.voice();\n                }\n            }.func,\n            .nameFn = struct {\n                fn func(ptr: *anyopaque) []const u8 {\n                    const self = Animal.castTo(T, ptr);\n                    return self.name();\n                }\n            }.func,\n        };\n        return .{\n            .vtable = &vtable,\n            .instance = instance,\n        };\n    }\n};\n```",
       "body_updated_at": "2025-01-18"
     },
     {

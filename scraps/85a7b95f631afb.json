@@ -18,7 +18,7 @@
     {
       "author": "funatsufumiya",
       "created_at": "2025-01-18",
-      "body_markdown": "実際に自分も実験してみた。`@cInclude`等を使うと実際のヘッダファイルを準備しなければいけなくて面倒なので、ここでは、`@embedFile` で好きなファイルを埋め込めることを活かし、ビルドオプションによってファイルの存在確認（つまり `@embedFile` の行全体）がきちんとスルーされるかを確認した。\n\nhttps://github.com/funatsufumiya/zig-conditional-build-test/"
+      "body_markdown": "実際に自分も実験してみた。`@cInclude`等を使うと実際のヘッダファイルを準備しなければいけなくて面倒なので、ここでは、`@embedFile` で好きなファイルを埋め込めることを活かし、ビルドオプションによってファイルの存在確認（つまり `@embedFile` の行全体）がきちんとスルーされるかを確認した。\n\nhttps://github.com/ffunatsu/zig-conditional-build-test/"
     },
     {
       "author": "funatsufumiya",
