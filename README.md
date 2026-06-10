@@ -17,6 +17,7 @@ Zennの `@funatsufumiya` アカウント閉鎖に伴うバックアップです�
 - [[Zig] Arena Allocatorを使った \"ふつうの\" Zigプログラミング](articles/b3935504dd1e97.md)
 - [AWSの料金から、無償枠 (クレジット) を引いたものを表示する方法](articles/e16514ada2da79.md)
 - [Bevy 0.15 → 0.16 の目立った変更点](articles/f74097c7b1dd6a.md)
+- [Jank言語（Clojure on LLVM/C++）が現実味を帯びてきてる話 (2026/3)](articles/b181dd49cca3e1.md)
 
 ### scraps
 
